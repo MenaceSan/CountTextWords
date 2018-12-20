@@ -4,6 +4,8 @@ By Dennis Robinson (dennis@menasoft.com)
 2018-12-01
 A NetApp interview C++ problem based on "Element Core Dev Coding Assignment.docx"
 
+NOTE: This code FAILED review! (see criticism section below) I'd love to get feedback as to why. Any comments in the GitHub Issues area would be welcome. I'll try to find a better forum for this as well.
+
 ### Summary
 Create an app that reads all '*.txt' files in a given directory.
 Create one directory enumeration thread and N other threads to read the actual file contents.
@@ -12,19 +14,19 @@ When complete, print out a list of the top ten occurring words.
 
 ### Goals:
 
-Fastest possible run time. Optimized for large number of files (A) preferred over other optimizations.
-Avoid slower interfaces. e.g. using shell for directory list.
-Keep it small and simple. Write Less code. Easy to read.
-Dev Time limited. Can only spend so much time on this.
-Portable to Windows and most Linux distros.
--Help mode.
-Show run timing.
-Fail gracefully.
-Commented code.
-Use STL for all possible.
-Clean cancellation in windows.
-No build warnings
-use const keyword appropriately for best optimization.
+Fastest possible run time. Optimized for large number of files (A) preferred over other optimizations.<br />
+Avoid slower interfaces. e.g. using shell for directory list.<br />
+Keep it small and simple. Write Less code. Easy to read.<br />
+Dev Time limited. Can only spend so much time on this.<br />
+Portable to Windows and most Linux distros.<br />
+-Help mode.<br />
+Show run timing.<br />
+Fail gracefully.<br />
+Commented code.<br />
+Use STL for all possible.<br />
+Clean cancellation in windows.<br />
+No build warnings<br />
+use const keyword appropriately for best optimization.<br />
 
 ### Assumptions:
 
