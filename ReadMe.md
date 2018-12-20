@@ -33,43 +33,44 @@ c++17 for std::filesystem support on MSVC. experimental for g++.
 Most files will be serialized to a single device so threading might not be effective. 
 Most operations will be i/O bound. SAN arrays may break that rule.
 Number of cores on the machine = optimal number of threads.
+
 https://stackoverflow.com/questions/902425/does-multithreading-make-sense-for-io-bound-operations
 
-A = Total number of files to process. Assume this can be infinite.
-B = Average size of file. Not infinite. 10M or less.
-C = Total number of words found. Size of the dictionary. 100k max ? Opimize for search before insertion.
-D = number of hardware cores (assumed to be the natural best number of worker threads)
-E = Serialized connections to the file system. (Assume 1 for normal local hard disk, more for NAS)
+A = Total number of files to process. Assume this can be infinite.<br />
+B = Average size of file. Not infinite. 10M or less.<br />
+C = Total number of words found. Size of the dictionary. 100k max ? Opimize for search before insertion.<br />
+D = number of hardware cores (assumed to be the natural best number of worker threads)<br />
+E = Serialized connections to the file system. (Assume 1 for normal local hard disk, more for NAS)<br />
 
 ### To build on Windows: 
 
 Use Visual Studio Community 2017.
 Load the sln file.
-Press F5
+Press F5.
 
 ### To Run on Windows: 
 
-ssfi c:\tmp -createsimpletest 1000 -quit
+ssfi c:\tmp -createsimpletest 1000 -quit<br />
 ssfi c:\tmp -t 7
 
 ### To build on Linux: (e.g. Ubuntu 18.04 LTS minimal install) 
 
-cd ~/
-sudo apt-get install gcc subversion make perl g++ build-essential g++-multilib
-svn checkout --no-auth-cache https://home.menasoft.com:8443/svn/Public/CountTextWords CountTextWords --username public
-cd CountTextWords
-svn update --force 
-rem ? install rt, pthread for : librt.so, pthread.so 
-rem ? check include files in /usr/include/c++/7
+cd ~/<br />
+sudo apt-get install gcc subversion make perl g++ build-essential g++-multilib<br />
+svn checkout --no-auth-cache https://home.menasoft.com:8443/svn/Public/CountTextWords CountTextWords --username public<br />
+cd CountTextWords<br />
+svn update --force <br />
+rem ? install rt, pthread for : librt.so, pthread.so <br />
+rem ? check include files in /usr/include/c++/7<br />
 make
  
 rem svn cleanup
 rem svn update
 
 ### To Run on Linux: 
-./ssfi ~/tmp -createsimpletest 1000 -quit
-./ssfi ~/tmp
-./ssfi /usr/share/doc -t 7
+./ssfi ~/tmp -createsimpletest 1000 -quit<br />
+./ssfi ~/tmp<br />
+./ssfi /usr/share/doc -t 7<br />
 
 ### Possible improvements?: 
 
@@ -87,8 +88,6 @@ make a big index for sorting usage count/rank as words are added ? Not an improv
 
 Let directory reader get a head start before it has contention with file readers ? Testing seems to indicate no.
 
-is reading one char at a time via ifstream.read very slow or does underlying buffering make up for it ?
-
 ## Official Criticism
 
 The code performed worse as the thread count increased.  
@@ -99,6 +98,6 @@ Since the disk device is likely serial (unless SAN, RAID etc) I would axpect it 
 
 ### Versions 
 
-v1
-v2 = fix variables not initialized on Linux.
-v3 = remove c++17 need and use of experimental path.
+v1<br />
+v2 = fix variables not initialized on Linux.<br />
+v3 = remove c++17 need and use of experimental path.<br />
