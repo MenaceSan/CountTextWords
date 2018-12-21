@@ -6,6 +6,10 @@ A NetApp interview C++ problem based on "Element Core Dev Coding Assignment.docx
 
 NOTE: This code FAILED review! (see criticism section below) I'd love to get feedback as to why. Any comments in the GitHub Issues area would be welcome. I'll try to find a better forum for this as well.
 
+See:
+https://stackoverflow.com/questions/53878291/if-i-need-to-read-lots-of-files-will-it-get-faster-if-i-break-the-problem-into
+
+
 ### Summary
 Create an app that reads all '*.txt' files in a given directory.
 Create one directory enumeration thread and N other threads to read the actual file contents.
@@ -90,13 +94,16 @@ make a big index for sorting usage count/rank as words are added ? Not an improv
 
 Let directory reader get a head start before it has contention with file readers ? Testing seems to indicate no.
 
+mmap() might help if the files are large. But it will get slower if the files are small.
+
+
 ## Official Criticism
 
 The code performed worse as the thread count increased.  
 We identified many of the causes for the negative behavior in his code and the candidate should have found them.
 
 (my take)
-Since the disk device is likely serial (unless SAN, RAID etc) I would axpect it to perform worse with more threads past a certain amount. Maybe adding some serialization (locking ) to the disk would help? Thats going to hurt or help depending on the target.
+Since the disk device is likely serial (unless SAN, RAID etc) I would expect it to perform worse with more threads past a certain amount. Maybe adding some serialization (locking ) to the disk would help? Thats going to hurt or help depending on the target.
 
 ### Versions 
 
